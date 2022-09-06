@@ -1,0 +1,148 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+
+\title{Assignment 1}
+\author{Filip Sjövall}
+\date{September 2022}
+
+\begin{document}
+
+\maketitle
+In the following sections we let $ S_q = \{ x \in \mathcal{R}^n : ||x||_q = 1    \} $ and $\lambda_i$ be the eigen values of $A$. 
+%%%%
+%%%%
+%%%%
+%%%%
+\section*{Task 1}
+The spectral radius is
+\begin{equation}
+    \rho(A) = \text{max}_i | \lambda_i(A) | .
+\end{equation}
+Eigen values are such that $Ax = \lambda_i x$, thus
+\begin{equation}
+    \rho(A)||x|| = ||\rho(A)x|| = ||Ax|| \leq ||A|| ||x||,
+\end{equation}
+where in the last step the Cauchy-Schwartz inequality was used.
+%%%%
+%%%%
+%%%%
+%%%%
+\section*{Task 2}
+From task we may conclude
+\begin{equation}
+    ||A|| < 1 \Rightarrow \rho(A) < 1.
+\end{equation}
+Since $A$ is square we may diagonalize it as $A = P D P ^{-1}$ where $P$ containts the eigenvectors of unit length and $D$ is the diagonal matrix of eigenvalues. Using $P^{-1} = P^T$ we get
+\begin{align*}
+    \lim_{n \to \infty} A^n = \lim_{n \to \infty} (PDP^{-1})^n = \\
+    = \lim_{n \to \infty} PDP^{-1}PDP^{-1}... = D^n.
+\end{align*}
+All elements of D are less than 0 since $\lambda_i \leq \rho(A) < 1$ so 
+\begin{equation}
+    \lim_{n \to \infty} A^n = 0.
+\end{equation}
+%%%%
+%%%%
+%%%%
+%%%%
+\section*{Task 3}
+%%%%
+\subsection*{1}
+\begin{align*}
+     \max_{1<i<m} |x_i| & \leq \left( \sum_{i=1}^m |x_i|^2 \right)^{1/2} \\
+     (\max_{1<i<m} |x_i|)^2 & \leq  \left( \sum_{i=1}^m |x_i|^2 \right)  \\
+     (\max_{1<i<m} |x_i|)^2 & \leq  (\max_{1<i<m} |x_i|)^2 + \left(  \sum_{i=1}^{m-1} |x_i|^2 \right) \\
+     || x ||_\infty & \leq || x ||_2
+\end{align*}
+if we assume $\max |x|$ is the final element, the sum $ \left( \sum_{i=1}^m |x_i|^2 \right)$ can of course be varied to exclude any element (the max).
+%%%
+\subsection*{2}
+Maximum value of $||x||_2$ would be if $x_1 = x_2 = x_{max}$ in some feasible set. Thus,
+\begin{equation}
+    ||x||_2 \leq \left( \sum_{i=1}^m |x_{max}|^2 
+                 \right)^{1/2} =
+                 \left( m |x_{max}|^2 
+                 \right)^{1/2} = 
+                 \sqrt{m} ||x||_\infty
+\end{equation}
+%%%%%%%%%
+\subsection*{3}
+We may write
+\begin{equation}
+    ||A||_\infty = \max_{x \in S_q} ||Ax||_\infty, 
+\end{equation}
+$Ax$ is a vector so we can use the result from task 3.1-3.2 i.e.
+\begin{equation}
+     ||A||_\infty = 
+     \max_{x \in S_q} ||Ax||_\infty \leq
+      \max_{x \in S_q} ||Ax||_2 \leq  \max_{x \in S_q} ||A||_2 ||x||_2
+      =  \max_{x \in S_q} ||A||_2 \sqrt{n} ||x||_\infty = \sqrt{n} ||A||_2 
+\end{equation}
+%%%%%%
+\subsection*{4}
+\begin{equation}
+    ||A||_\infty = \max_{x \in S_q} ||Ax||_\infty = 
+    \max_{x \in S_q} \max_i \left( \sum_{j=1}^m A_{ij} x_j \right) = 
+    \max_{x \in S_q} \max_i b_i
+\end{equation}
+\begin{equation}
+    ||A||_2 = \max_{x \in S_q} ||Ax||_2
+    = \max_{x \in S_q} \left( \sum_{i=1}^n \sum_{j=1}^m |A_{ij} x_j|^2 \right)^{1/2} = 
+    \left( \max_{x \in S_q}  \sum_{i=1}^n b_i^2 \right)^{1/2}.
+\end{equation}
+Thus by the same argument as in 3.2 i.e. that for some feasible set we attain the maximum value of $ ( \sum_{i=1}^n b_i^2)^{1/2} $ for $b_1 = b_2 = ... =b_n = b_{max}$ so
+\begin{equation}
+    ||A||_2 \leq \left( \sum_{i=1}^n (\max_k b_k) ^2 \right)^{1/2} =
+    \sqrt{n} ||A||_\infty
+\end{equation}
+%%%%%%
+%%%%%%
+%%%%%%
+%%%%%%
+\section*{Task 4}
+We have $A = a^T$ 
+\begin{equation}
+    ||A||_2 = | a^T x| \leq ||a||_2 ||x||_2,
+\end{equation}
+using the Cauchy-Schwartz inequality. Thus
+\begin{equation}
+    ||Aa||_2 = ||a||_2^2.
+\end{equation}
+and the 2-norm
+\begin{equation}
+    ||A||_2 =  \max_{x \in S_q} ||Ax||_2 = ||a||_2.
+\end{equation}
+For the 1- and inf-norms we instead have
+\begin{align}
+& ||A||_1 = 
+\sup_{x \in \mathrm{R}^n / \{ 0 \} } \frac{||a^T x||_1}{||x||_1} =
+\sup_{x \in \mathrm{R}^n / \{ 0 \} } \frac{\sum_{i=1}^n a_i x_i}{\sum_{i=1}^n x_i} = ||a||_1, \\ 
+& ||A||_\infty = 
+\max_{x \in S_q} ||Ax||_\infty = 
+\max_{x \in S_q} || \sum_{j=1}^n x_j a_j ||_\infty = 
+||x||_\infty ||a_j||_\infty = \max_j (a_j) = ||a||_\infty.
+\end{align}
+%%%%%%%
+%%%%%%%
+%%%%%%%
+\section*{5}
+We may write the trace of $A^T A$ as
+\begin{equation}
+    \text{trace}(A^T A) = \sum_{j=1}^m (\sum_{i=1}^n a_{ij} a_{ji}) =  
+    \sum_{j=1}^m (\sum_{i=1}^n a_{ij}^2 ).
+\end{equation}
+\begin{equation}
+    ||A||_F = \sum_{j=1}^m (\sum_{i=1}^n a_{ij}^2 ) = \text{trace}(A^T A).
+\end{equation}
+b)
+\begin{equation}
+    ||QA||_F = \sqrt{\text{trace}(A^TQ^T Q A)} = 
+               \sqrt{\text{trace}(A^T I A)}    =
+               ||A||_F
+                
+\end{equation}
+
+\end{document}
